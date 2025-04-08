@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>นิทานกระต่ายกับเต่า</title>
+    <style>
+        body {
+            font-family: 'sans-serif';
+            background-color: #fdf6e3;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        #story-box {
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #next-btn, #answer-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #8bc34a;
+            color: white;
+            cursor: pointer;
+        }
+        #answer-section {
+            display: none;
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="story-box">
+        <h1>นิทาน: กระต่ายกับเต่า</h1>
+        <p id="story-text">กาลครั้งหนึ่งนานมาแล้ว...</p>
+        <button id="next-btn">ถัดไป</button>
+        <div id="answer-section">
+            <p>ใครชนะการแข่งขัน?</p>
+            <button onclick="checkAnswer('เต่า')">เต่า</button>
+            <button onclick="checkAnswer('กระต่าย')">กระต่าย</button>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        // เนื้อเรื่องของนิทาน
+        const story = [
+            "กาลครั้งหนึ่ง มีกระต่ายกับเต่าคุยกันเรื่องความเร็ว",
+            "กระต่ายหัวเราะเยาะเต่าที่เดินช้า",
+            "เต่าจึงท้ากระต่ายแข่งวิ่ง",
+            "พวกเขาเริ่มแข่งกัน กระต่ายวิ่งเร็วแล้วหยุดนอนกลางทาง",
+            "เต่าเดินช้าๆ แต่ไม่หยุด จนถึงเส้นชัยก่อน",
+            "กระต่ายตื่นขึ้นมา แต่ก็สายไปแล้ว เต่าชนะ!"
+        ];
+
+        let index = 0;
+        const textEl = document.getElementById("story-text");
+        const btn = document.getElementById("next-btn");
+        const answerSection = document.getElementById("answer-section");
+
+        // ฟังก์ชันสำหรับเปลี่ยนข้อความในนิทาน
+        btn.addEventListener("click", () => {
+            index++;
+            if (index < story.length) {
+                textEl.textContent = story[index];
+            } else {
+                btn.style.display = "none";
+                answerSection.style.display = "block";
+            }
+        });
+
+        // ฟังก์ชันสำหรับตรวจคำตอบ
+        function checkAnswer(choice) {
+            const result = document.getElementById("result");
+            if (choice === "เต่า") {
+                result.textContent = "ถูกต้อง! เต่าชนะเพราะความพยายาม";
+                result.style.color = "green";
+            } else {
+                result.textContent = "ไม่ใช่นะ ลองใหม่อีกที";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
